@@ -93,7 +93,7 @@ F3: int_val # Flow sensor 3
 F4: int_val # Flow sensor 4
 ```
 
-Please do take note. The key values for the flow sensors are not constant for the two developed sensor suites. Meaning, one would output F1, F2, F3 and F4 and the other F5, F6, F7 and F8. (Numbering will be based on the predefined labels on the physical sensors itself).
+Please do take note. The key values for the `flow sensors` are NOT constant for the two developed sensor suites. Meaning, one would output F1, F2, F3 and F4 and the other F5, F6, F7 and F8. (Numbering will be based on the predefined labels on the physical sensors itself).
 
 ### Data frames
 
@@ -117,7 +117,7 @@ The serial data outputted by the microcontrollers follow the frame format:
 
 To provide basic integrity checks for incoming data, the checksum algo implemented is super duper easy (and a bad example). But, basic is better than none.
 
-It basically is the sum of all the chars in the generated data string, EXCLUDING <SOH> <EOText> and <EOTrans>, but including the <SEP>s.
+It basically is the sum of all the chars in the generated data string, EXCLUDING `SOH`, `EOText` and `EOTrans`, but including the `SEP`s.
   
 # TODOs
 - Fix the interrupt call for turning lights on/off

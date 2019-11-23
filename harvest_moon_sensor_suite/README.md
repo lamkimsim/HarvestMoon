@@ -124,4 +124,5 @@ It basically is the sum of all the chars in the generated data string, EXCLUDING
 - update hardware diagram to read_me
 - Fix read_once function call (add a wait until statement)
 - PH sensor?
+- Documentation on compiling arduino firmware
 

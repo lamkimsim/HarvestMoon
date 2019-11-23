@@ -119,5 +119,9 @@ To provide basic integrity checks for incoming data, the checksum algo implement
 
 It basically is the sum of all the chars in the generated data string, EXCLUDING <SOH> <EOText> and <EOTrans>, but including the <SEP>s.
   
-
+# TODOs
+- Fix the interrupt call for turning lights on/off
+- update hardware diagram to read_me
+- Fix read_once function call (add a wait until statement)
+- PH sensor?
 

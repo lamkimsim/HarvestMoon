@@ -107,6 +107,7 @@ The serial data outputted by the microcontrollers follow the frame format:
 ```
 
 |Name|Description|Ascii Control Chars|
+|---|---|---|
 |<SOH>|Start of header|"\x01"|
 |<SEP>|Seperator|"\x1e"|
 |<EOText>|End of text|"\x03"|

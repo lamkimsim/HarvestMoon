@@ -52,7 +52,7 @@ class harvest_moon_pyqt_gui(QWidget):
         # init emit_sensor_dict
         self.emit_sensor = emit_sensor_dict(port, baud_rate)
         # connect signal
-        self.emit_sensor.dict_signal.connect(self.myfunc)
+        self.emit_sensor.dict_signal.connect(self.display_data)
         # start emitter
         self.emit_sensor.start()
 
@@ -60,7 +60,7 @@ class harvest_moon_pyqt_gui(QWidget):
     def init_ui(self):
         # LCDs for displaying sensor values
         self.water_temp_lcd = QLCDNumber()
-        self.air_temp_lcd = QLCDNumber()
+        self.amb_temp_lcd = QLCDNumber()
         self.humidity_lcd = QLCDNumber()
         self.flow_sensor_1_lcd = QLCDNumber()
         self.flow_sensor_2_lcd = QLCDNumber()
@@ -80,10 +80,10 @@ class harvest_moon_pyqt_gui(QWidget):
         self.water_temp_label = QLabel()
         self.water_temp_label.setText("Water Temperature ('C):")
         self.water_temp_label.setFont(self.font)
-        # Air temp label
-        self.air_temp_label = QLabel()
-        self.air_temp_label.setText("Ambient Temperature ('C):")
-        self.air_temp_label.setFont(self.font)
+        # amb temp label
+        self.amb_temp_label = QLabel()
+        self.amb_temp_label.setText("Ambient Temperature ('C):")
+        self.amb_temp_label.setFont(self.font)
         # Humidity label
         self.humidity_label = QLabel()
         self.humidity_label.setText("Humidity:")
@@ -120,8 +120,8 @@ class harvest_moon_pyqt_gui(QWidget):
         # Left layout
         self.vlayout_box_left.addWidget(self.water_temp_label,0.5)
         self.vlayout_box_left.addWidget(self.water_temp_lcd,2.5)
-        self.vlayout_box_left.addWidget(self.air_temp_label,0.5)
-        self.vlayout_box_left.addWidget(self.air_temp_lcd,2.5)
+        self.vlayout_box_left.addWidget(self.amb_temp_label,0.5)
+        self.vlayout_box_left.addWidget(self.amb_temp_lcd,2.5)
         self.vlayout_box_left.addWidget(self.humidity_label,0.5)
         self.vlayout_box_left.addWidget(self.humidity_lcd,2.5)
         # Right layout
@@ -140,14 +140,14 @@ class harvest_moon_pyqt_gui(QWidget):
         # show layout
         self.showMaximized()
 
-    def myfunc(self, r_dict):
+    def display_data(self, r_dict):
         # counter only needed for dynamic flow sensor labels
         i = 0
         for key in r_dict:
             if key == "WT":
                 self.water_temp_lcd.display(r_dict[key])
             elif key == "AT":
-                self.air_temp_lcd.display(r_dict[key])
+                self.amb_temp_lcd.display(r_dict[key])
             elif key == "HD":
                 self.humidity_lcd.display(r_dict[key])
             else:

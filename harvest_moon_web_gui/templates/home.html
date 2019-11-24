@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="static/js/date_time.js"></script>
+    <!--<link rel="stylesheet" href="/static/css/main.css">-->
+    <title>HarvestMoon</title>
+    <style>
+    table, td, th {
+      border: 2px solid black;
+      padding: 5px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-left:auto;
+      margin-right:auto;
+      width: 70%;
+    }
+
+    th {
+      height: 50px;
+      text-align: left;
+    }
+
+</style>
+</head>
+<body>
+    {% extends "layout.html"%}
+    {% block content%}
+    <div class="home">
+        <h1>Sensors DashBoard</h1>
+        <span id="date_time"></span>
+        <script type="text/javascript">window.onload = date_time ('date_time');</script>
+    </div>
+    <h2> Flow Sensor</h2>
+        <table>
+            <tr>
+                <th>Sensor ID</th>
+                <th>Value</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>F1</td>
+                <td>35</td>
+                <td>Normal</td>
+            </tr>
+            <tr>
+                <td>F2</td>
+                <td>30</td>
+                <td>Normal</td>
+            </tr>
+            <tr>
+                <td>F3</td>
+                <td>33</td>
+                <td>Normal</td>
+            </tr>
+        </table>
+
+    <h2>Temperature Sensor</h2>
+    <table>
+        <tr>
+            <th>Sensor ID</th>
+            <th>Value</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>T1</td>
+            <td>25.65</td>
+            <td>Normal</td>
+        </tr>
+        <tr>
+            <td>T2</td>
+            <td>27.43</td>
+            <td>Normal</td>
+        </tr>
+    </table>
+    <h2>PH Sensor</h2>
+    <table>
+        <tr>
+            <th>Sensor ID</th>
+            <th>Value</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>P1</td>
+            <td>7</td>
+            <td>Normal</td>
+        </tr>
+    </table>
+    <div class="logo">
+        <img src="static/images/logo.png"  width="200" height="200">
+    </div>
+    {% endblock %}
+</body>
+</html>
+

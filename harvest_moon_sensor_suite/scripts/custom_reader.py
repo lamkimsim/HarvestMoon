@@ -5,12 +5,13 @@ BAUD_RATE = 9600
 
 class custom_reader():
     def __init__ (self, port, baud_rate):
+        print("Attempting to initialize with PORT: ", port," & BAUD_RATE: ", baud_rate)
         self.sensor_dict = {}
 
         try:
             self.ser = serial.Serial(port, baud_rate, timeout=1)
         except serial.serialutil.SerialException:
-            log.exception("Error in opening port. Please check or call kerliang!")
+            print("Error in opening port. Please check or call kerliang!")
     
     def stream_read(self):
         try:

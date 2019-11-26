@@ -17,7 +17,7 @@ Run `main.py` python script under `harvest_moon_web_gui directory`:
 ```
 python main.py
 ``` 
-Open a browser and enter `localhost:8080` for debugging.
+Open a browser and enter `localhost:8080` for local development.
 
 
 ### GCP App Deployment

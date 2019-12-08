@@ -1,4 +1,5 @@
 import serial
+import time
 
 PORT = "/dev/ttyUSB0" #/dev/ttyACM0 is arduino uno
 BAUD_RATE = 9600
@@ -107,6 +108,18 @@ class custom_reader():
 
     def turn_lights(self, msg):
         assert type(msg) == bool
+        if msg is True:
+            # clear any cache
+            time.sleep(1.5)
+            self.ser.write(str.encode('c'))
+            # send command to turn on
+            time.sleep(1.5)
+            self.ser.write(str.encode('00*01c'))
+        else if msg is False:
+            time.sleep(1.5)
+            self.ser.write.(str.encode('c'))
+            time.sleep(1.5)
+            self.ser.write(str.encode('00*00c'))
 
 def stream_main(args=None):
     try:

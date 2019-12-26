@@ -3,6 +3,8 @@
 #include <OneWire.h>
 
 #define DHT11_PIN 7
+#define SSR_PIN 8
+
 dht DHT;
 OneWire ds(6);
 
@@ -73,7 +75,7 @@ int stringChecksum(String s)
     int counter;
     int c_sum = 0;
     for (counter = 0; counter<strlen(char_array); counter++){
-      c_sum = checksum + char_array[counter];
+      c_sum = c_sum + char_array[counter];
     }
     return c_sum; 
 }
@@ -83,6 +85,10 @@ void setup()
 {
    inputString.reserve(200);
    pinMode(LED_BUILTIN, OUTPUT);
+   digitalWrite(LED_BUILTIN, LOW);
+
+   pinMode(SSR_PIN, OUTPUT);
+   digitalWrite(SSR_PIN, LOW);
    
    pinMode(flowsensor_pin2, INPUT);
    digitalWrite(flowsensor_pin2, HIGH); // Optional Internal Pull-Up
@@ -115,49 +121,38 @@ void loop ()
       if (inputString == "00*01\r"){
         digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
         delay(1000);                       // wait for a second
-        digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+        digitalWrite(SSR_PIN, HIGH);
         delay(1000);
       }
       else if (inputString == "00*01\n"){
         digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
         delay(1000);                       // wait for a second
-        digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+        digitalWrite(SSR_PIN, HIGH);
         delay(1000);
       }
       else if (inputString == "00*01"){
         digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
         delay(1000);                       // wait for a second
-        digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+        digitalWrite(SSR_PIN, HIGH);
         delay(1000);
       }
       else if (inputString == "00*00\r"){
-        digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-        delay(1000);                       // wait for a second
         digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
         delay(1000);
-        digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-        delay(1000);                       // wait for a second
-        digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+        digitalWrite(SSR_PIN, LOW);
         delay(1000);
       }
       else if (inputString == "00*00\n"){
-        digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-        delay(1000);                       // wait for a second
         digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
         delay(1000);
-        digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-        delay(1000);                       // wait for a second
-        digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+        digitalWrite(SSR_PIN, LOW);
         delay(1000);
+
       }
       else if (inputString == "00*00"){
-        digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-        delay(1000);                       // wait for a second
         digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
         delay(1000);
-        digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-        delay(1000);                       // wait for a second
-        digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+        digitalWrite(SSR_PIN, LOW);
         delay(1000);
       }
       // clear the string:
@@ -280,7 +275,7 @@ void loop ()
       string_wo_checksum = temp_n_hum_string+flow_string;
       checksum = stringChecksum(string_wo_checksum);
       string_w_checksum = string_wo_checksum + end_of_text + checksum;
-      string_to_be_sent = start_of_header + string_w_checksum + end_of_transmission;  
+      string_to_be_sent = start_of_header + string_w_checksum + end_of_transmission;
       Serial.print(string_to_be_sent);
       checksum = 0;
 

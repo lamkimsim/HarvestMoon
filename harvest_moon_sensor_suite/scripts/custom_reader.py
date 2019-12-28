@@ -1,7 +1,7 @@
 import serial
 import time
 
-PORT = "/dev/ttyUSB0" #/dev/ttyACM0 is arduino uno
+PORT = "/dev/ttyACM0" #/dev/ttyACM0 is arduino uno
 BAUD_RATE = 9600
 
 class custom_reader():
@@ -44,8 +44,8 @@ class custom_reader():
                     # transforming to dict
                     self.data = self.data[0].split(b'\x1e')
                     for items in self.data:
-                        items = items.split(',')
-                        self.sensor_dict[items[0]]=items[1]
+                        items = items.split(b',')
+                        self.sensor_dict[items[0].decode()]=items[1].decode()
 
                 except:
                     print("Something went wrong.")
@@ -115,9 +115,9 @@ class custom_reader():
             # send command to turn on
             time.sleep(1.5)
             self.ser.write(str.encode('00*01c'))
-        else if msg is False:
+        elif msg is False:
             time.sleep(1.5)
-            self.ser.write.(str.encode('c'))
+            self.ser.write(str.encode('c'))
             time.sleep(1.5)
             self.ser.write(str.encode('00*00c'))
 

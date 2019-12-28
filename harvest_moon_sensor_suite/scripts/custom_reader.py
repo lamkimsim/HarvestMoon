@@ -1,7 +1,7 @@
 import serial
 import time
 
-PORT = "/dev/ttyUSB0" #/dev/ttyACM0 is arduino uno
+PORT = "/dev/ttyACM0" #/dev/ttyACM0 is arduino uno
 BAUD_RATE = 9600
 
 class custom_reader():
